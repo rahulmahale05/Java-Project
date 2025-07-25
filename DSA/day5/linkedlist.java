@@ -86,6 +86,25 @@ public class linkedlist {
         }
         secondLast.next= null;
     }
+
+    // Add at particular index
+    public void add(int pos , String data){
+        if(pos < 0){
+            System.out.println("Invalid Index");
+            return;
+        }
+        if(pos==0){
+            addFirst(data);
+            return;
+        }
+        Node newNode = new Node(data);
+        Node temp = head;
+        for (int i = 0; i < pos-1; i++) {
+            temp=temp.next;
+        }
+        newNode.next = temp.next;
+        temp.next = newNode;
+    }
     //size
     public int getSize(){
         return size;
