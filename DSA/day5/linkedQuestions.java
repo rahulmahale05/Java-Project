@@ -134,6 +134,19 @@ public class linkedQuestions {
         }
         return newNode.next;
     }
+
+    public Node mergeRec(Node h1 , Node h2){
+        if(h1 == null && h2 == null) return null;
+        if(h1 == null) return h2;
+        if(h2 == null) return h1;
+        if(h1.data<h2.data){
+            h1.next = mergeRec(h1.next, h2);
+            return h1;
+        }else{
+            h2.next = mergeRec(h1, h2.next);
+            return h2;
+        }
+    }
     public static void main(String[] args) {
         linkedQuestions list = new linkedQuestions();
         list.addFirst("1");
