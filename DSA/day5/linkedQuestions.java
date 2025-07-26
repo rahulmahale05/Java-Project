@@ -109,6 +109,31 @@ public class linkedQuestions {
         }
         return false;
     }
+
+    public Node merge(Node h1 , Node h2){
+        if(h1 == null && h2 == null) return null;
+        Node newNode = new Node(0);
+        Node curr = newNode;
+        while (h1 != null && h2 != null) {
+            if(h1.data < h2.data){
+                curr.next = h1;
+                h1 = h1.next;
+            }else{
+                curr.next = h2;
+                h2 = h2.next;
+            }
+            curr = curr.next;
+        }
+        while (h1 != null) {
+            curr.next = h1;
+            h1 = h1.next;
+        }
+        while (h2 != null) {
+                curr.next = h2;
+                h2 = h2.next;
+        }
+        return newNode.next;
+    }
     public static void main(String[] args) {
         linkedQuestions list = new linkedQuestions();
         list.addFirst("1");
