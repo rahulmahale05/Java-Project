@@ -76,6 +76,15 @@ public class linkedQuestions {
         return prev;
     }
 
+    public Node recursiveReverse(Node head){
+        if(head == null || head.next == null) return head;
+
+        Node newNode = recursiveReverse(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newNode;
+    }
+
     public Boolean pallindrome(Node head){
         if(head == null || head.next==null) return true;
         Node middle = findmiddle(head);
