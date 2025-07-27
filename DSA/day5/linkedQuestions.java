@@ -3,16 +3,16 @@ package DSA.day5;
 public class linkedQuestions {
     Node head;
     class Node{
-        String data;
+        int data;
         Node next;
 
-        Node(String data){
+        Node(int data){
             this.data=data;
             this.next=null;
         }
     }
     public Node removeNth(Node head , int n){
-        if(head.next==null || head==null) return null;
+        if(head==null || head.next==null) return null;
         int size=0;
         Node curr = head;
         while(curr !=null){
@@ -41,9 +41,9 @@ public class linkedQuestions {
             System.out.print(currNode.data + " -> ");
             currNode = currNode.next;
         }
-        System.out.println("Null");
+        System.out.println("NULL");
     }
-    public void addFirst(String data){
+    public void addFirst(int data){
         Node newNode = new Node(data);
         if(head == null){
             head = newNode;
@@ -56,7 +56,7 @@ public class linkedQuestions {
     public Node findmiddle(Node head){
         Node hare = head;
         Node turtle = head;
-        while(hare.next !=null && hare.next.next != null){
+        while(hare !=null && hare.next != null){
             hare=hare.next.next;
             turtle=turtle.next;
         }
@@ -149,34 +149,103 @@ public class linkedQuestions {
     }
 
     public Node swap(Node head){
-        if(head == null || head.next == null) return head;
-        Node dummy = new Node(0);
-        dummy.next=head;
-        Node prev=dummy;
-        while(prev.next != null && prev.next.next != null){
-            Node first = prev.next;
-            Node second = prev.next.next;
+        if (head == null || head.next == null) return head;
+        
+        Node first = head;
+        Node second = head.next;
+        Node prev = null;
+        while (first != null && second != null) {
+            Node temp = second.next;
 
-            first.next = second.next;
             second.next = first;
-            prev.next=second;
-            
+            first.next = temp;
+
+            if(prev != null){
+                prev.next = second;
+            }else{
+                head = second;
+            }
+
             prev = first;
+            first = temp;
+            if(temp != null){
+                second = temp.next;
+            }else{
+                second = null;
+            }
         }
-        return dummy.next;
+        return head;
+    }
+
+
+    public Node reverseKGroup(Node head, int k) {
+        if (k <= 1 || head == null) return head;
+        Node curr = head;
+        int count = 0;
+        while(count<k){
+            if(curr == null) return head;
+            count++;
+            curr = curr.next;
+        }
+        Node prev = reverseKGroup(curr, k);
+
+        curr = head;
+        count = 0;
+        while(count<k){
+            Node nextNode = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = nextNode;
+            count++;
+        }
+        return prev;
     }
     public static void main(String[] args) {
         linkedQuestions list = new linkedQuestions();
-        list.addFirst("1");
-        list.addFirst("2");
-        list.addFirst("3");
-        list.addFirst("3");
-        list.addFirst("2");
-        list.addFirst("1");
-        list.addFirst("7");
-        list.head = list.removeNth(list.head, 1);
+        list.addFirst(0);
+        list.addFirst(1);
+        list.addFirst(2);
+        list.addFirst(3);
+        list.addFirst(4);
+        list.addFirst(5);
+        list.printList();
+        list.head = list.removeNth(list.head, 3);
+        list.printList();
+        System.out.println(list.findmiddle(list.head).data);
+        list.head = list.reverse(list.head);
+        list.printList();
+        list.head = list.recursiveReverse(list.head);
+        list.printList();
+        list.head = list.reverseKGroup(list.head, 3);
         list.printList();
         System.out.println(list.pallindrome(list.head));
         System.out.println(list.hasCycle(list.head));
+        list.head = list.swap(list.head);
+        list.printList();
+        list.head = list.swap(list.head);
+        list.printList();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
