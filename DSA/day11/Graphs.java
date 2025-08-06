@@ -60,7 +60,7 @@ public class Graphs {
         System.out.print(curr+" ");
         visited[curr] = true;
         for (Edge e : graph[curr]) {
-            if(visited[e.dest] == false){
+            if(!visited[e.dest]){
                 DFS(graph, visited, e.dest);
             }
         }
@@ -88,7 +88,7 @@ public class Graphs {
         // }
         boolean visited[] = new boolean[7];
         // for (int i = 0; i < visited.length; i++) {
-        //     if(visited[i] == false){
+        //     if(!visited[i]){
         //         // BFS(graph,V,visited,i);
         //         DFS(graph, visited, i);
         //     }
