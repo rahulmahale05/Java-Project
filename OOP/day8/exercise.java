@@ -38,7 +38,6 @@ class prime{
         //     System.out.println("The given number is prime");
         // else 
         //     System.out.println("The given number is not prime");
-
     // }
     public boolean primeno(int n){        
             for(int i=2;i<n;i++){
