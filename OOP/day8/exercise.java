@@ -11,11 +11,9 @@ public class exercise {
 
         int n=sc.nextInt();
         for(int j=2;j<=n;j++){
-            int a = p.primeno(j);
-            if (a==2) {
-                System.out.println(j);
-                
-            }
+            p.primeno(j);
+            if (p.primeno(j)) 
+                System.out.println(j);  
         }
     
 
@@ -42,14 +40,11 @@ class prime{
         //     System.out.println("The given number is not prime");
 
     // }
-    public int primeno(int n){
-        int num=0;
-        
-            for(int i=1;i<=n;i++){
+    public boolean primeno(int n){        
+            for(int i=2;i<n;i++){
                 if(n%i==0)
-                   num++;
+                   return false;
             }
-     
-        return num;
+        return true;
     }
 }
