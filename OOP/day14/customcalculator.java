@@ -27,10 +27,10 @@ public class customcalculator {
                     if(x<7000 & y<7000){
                 System.out.println(x*y);
                     }
-            }
-            catch(Exception A){
-                System.out.println("Can not divide by zero");
-            }
+                }
+                catch(Exception A){
+                    System.out.println("Can not divide by zero");
+                }
                 break;
             case 4:
                 try{
